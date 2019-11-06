@@ -32,8 +32,15 @@ void play() {
   if (timer<0) {
     mode = GAMEOVER;
   }
-}
 
+  fill(255, 243, 0);
+
+  if (anim_frame++<anim_speed)//pacman close mouth
+    arc (width/2, height/2, 50, 50, 0, 2*PI*anim_frame/anim_speed);
+  if (mode == GAMEOVER) {
+    if (anim_frame>=anim_speed)anim_frame=0;
+  }
+}
 
 void playClicks() {
   if (rcolor == rwords) {
@@ -52,9 +59,18 @@ void playClicks() {
     point++;
     rcolor = int(random(0, 4));
     rwords =  int(random(0, 4));
-    timer= 600;
+    timer= 240;
+    if (anim_frame>=anim_speed)anim_frame=0;
   } else {
     lives --;
-    mode = GAMEOVER;
+    rcolor = int(random(0, 4));
+    rwords =  int(random(0, 4));
+    timer= 240;
+    if (anim_frame>=anim_speed)anim_frame=0;
+
+    if (lives< 0) {
+      mode = GAMEOVER;
+      timer= 30;
+    }
   }
 }
