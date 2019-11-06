@@ -21,15 +21,14 @@ color lred = #FF3636;
 int point=1, lives=1;
 int score = 0;
 color[] random = {color(255, 0, 0), color(0, 255, 0), color(0, 0, 255), color(255, 255, 0)};
-String[] words = {"red", "blue", "green", "yellow"};
+String[] words = {"red", "green", "blue", "yellow"};
 int rwords = (int) random(0, 4);
-int rcolor = random[(int) random(random.length)];
+int rcolor = (int)random(0, 4);
 boolean correctans;
 boolean ans;
 int mode;
-int timer = 180;
-int colour;
-int word;
+int timer = 600;
+//int word;
 final int INTRO  = 1;
 final int PLAY   = 2;
 final int GAMEOVER = 3;
@@ -37,12 +36,13 @@ final int PAUSE  = 4;
 final int testleft  = 5;
 final int testright  = 6;
 
+
 void setup() {
   size(800, 600);
-  mode = PLAY;
+  mode = INTRO;
   smooth();
-}
 
+}
 void draw() {
   if (mode == INTRO) intro();
   else if (mode == PLAY) play();

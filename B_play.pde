@@ -27,8 +27,8 @@ void play() {
   textAlign(CENTER);
   textSize(100);
   timer = timer-1;
-  fill(colour);
-  text(words[word], width/2, height/2-210);
+  fill(random[rcolor]);
+  text(words[rwords], width/2, height/2-210);
   if (timer<0) {
     mode = GAMEOVER;
   }
@@ -36,33 +36,25 @@ void play() {
 
 
 void playClicks() {
-  if (colour == word) {
+  if (rcolor == rwords) {
     correctans = true;
   } else {
     correctans = false;
   }
 
   if (mouseX>410 && mouseX<800 && mouseY>100 && mouseY<600) {
-    timer= 180;
     ans = false;
   } else if (mouseX>0 && mouseX<390 && mouseY>100 && mouseY<600) {
     ans = true;
   }
 
   if (ans == correctans) {
-    score++;
-    colour = random[(int) random(random.length)];
-    word =  int(random(4));
+    point++;
+    rcolor = int(random(0, 4));
+    rwords =  int(random(0, 4));
+    timer= 600;
   } else {
+    lives --;
     mode = GAMEOVER;
   }
 }
-
-//  mode = GAMEOVER;
-//}
-
-
-//colour = random[(int) random(random.length)];
-//word =  int(random(4));
-// }
-// }
